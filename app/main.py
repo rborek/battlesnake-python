@@ -41,10 +41,14 @@ def move():
         # if it is us
         if snake['id'] == id:
             head = snake['coords'][0]
-            if head[0] == 0 or head[0] == data['width'] - 1:
+            if head[0] == 0 :
                 toMove = 'north'
-            if head[1] == 0 or head[1] == data['height'] - 1:
+            elif head[0] == data['width'] - 1:
+                toMove = 'south'
+            if head[1] == 0:
                 toMove = 'east'
+            elif head[1] == data['height'] - 1:
+                toMove = 'west'
 
             for coord in snake['coords']:
                 print str(coord[0]) + " " + str(coord[1])
