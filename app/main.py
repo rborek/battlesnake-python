@@ -76,38 +76,38 @@ def move():
             # if the xcoord is 0, or to the left
             if head[0] == 0 :
                 if head[1]== data['height']-1: #bottom left corner
-                    if justMoved == 'Moved south':
-                        toMove = 'east'
-                    elif justMoved == 'Moved west':
-                        toMove = 'north'
+                    if justMoved == "Moved south":
+                        toMove = "east"
+                    elif justMoved == "Moved west":
+                        toMove = "north"
                 elif head[1] == 0: # top left corner
-                    if justMoved == 'Moved north':
-                        toMove = 'east'
-                    elif justMoved == 'Moved west'
-                        toMove = 'south'
+                    if justMoved == "Moved north":
+                        toMove = "east"
+                    elif justMoved == "Moved west"
+                        toMove = "south"
                 else:
-                    toMove= 'north'
+                    toMove= "north"
             #if the xcoord is to the right
             elif head[0] == data['width'] - 1:
                 if head[1] == data['height']-1: #bottom right corner
-                    if justMoved == 'Moved east':
-                        toMove = 'north'
-                    elif justMoved == 'Moved south':
-                        toMove = 'west'
+                    if justMoved == "Moved east":
+                        toMove = "north"
+                    elif justMoved == "Moved south":
+                        toMove = "west"
                 elif head[1] == 0: # top right corner
-                    if justMoved == 'Moved north':
-                        toMove = 'west'
-                    elif justMoved == 'Moved east':
-                        toMove = 'south'
+                    if justMoved == "Moved north":
+                        toMove = "west"
+                    elif justMoved == "Moved east":
+                        toMove = "south"
                 else:
-                    toMove ='south'
+                    toMove = "south"
             #if the ycoord is on the bottom
 
 
             if head[1] == 0:
-                toMove = 'east'
+                toMove = "east"
             elif head[1] == data['height'] - 1:
-                toMove = 'west'
+                toMove = "west"
 
     # TODO: Do things with data
 
