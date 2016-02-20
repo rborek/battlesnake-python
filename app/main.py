@@ -73,6 +73,10 @@ def move():
         if snake['id'] == id:
             head = snake['coords'][0]
             justMoved = snake['message']
+            if head[1] == 0:
+                toMove = "east"
+            elif head[1] == data['height'] - 1:
+                toMove = "west"
             # if the xcoord is 0, or to the left
             if head[0] == 0 :
                 if head[1]== data['height']-1: #bottom left corner
@@ -104,10 +108,6 @@ def move():
             #if the ycoord is on the bottom
 
 
-            if head[1] == 0:
-                toMove = "east"
-            elif head[1] == data['height'] - 1:
-                toMove = "west"
 
     # TODO: Do things with data
 
