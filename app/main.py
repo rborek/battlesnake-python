@@ -36,10 +36,16 @@ def start():
 def move():
     data = bottle.request.json
     grid = [[0 for i in xrange(data['width'])] for i in xrange(data['height'])]
-
+    toMove = 'north';
     for snake in data['snakes']:
         # if it is us
         if snake['id'] == id:
+            head = snake['coords'][0]
+            if head[0] == 0 or head[0] == data['width'] - 1:
+                toMove = 'north'
+            if head[1] == 0 or head[1] == data['height'] - 1:
+                toMove = 'east'
+
             for coord in snake['coords']:
                 print str(coord[0]) + " " + str(coord[1])
 
@@ -48,7 +54,7 @@ def move():
 
 
     return {
-        'move': 'north',
+        'move': toMove,
         'taunt': 'battlesnake-python!'
     }
 
