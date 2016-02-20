@@ -103,12 +103,14 @@ def move():
                     toMove= "north"
             #if the xcoord is to the right
             elif head[0] == data['width'] - 1:
+                print "reached right side" 
                 if head[1] == data['height']-1: #bottom right corner
                     if justMoved == "Moved east":
                         toMove = "north"
                     elif justMoved == "Moved south":
                         toMove = "west"
                 elif head[1] == 0: # top right corner
+                    print "reached top right"
                     if justMoved == "Moved north":
                         toMove = "west"
                     elif justMoved == "Moved east":
