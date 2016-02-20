@@ -67,14 +67,14 @@ def move():
     grid = getGrid(data) 
     toMove = 'north'
     head = [0, 0]
-    justMoved = ''; 
+    justMoved = ""; 
     for snake in data['snakes']:
         # if it is us
         if snake['id'] == id:
-            print str(data['width'])
-            print justMoved
             head = snake['coords'][0]
             justMoved = snake['message']
+            print str(data['width'])
+            print justMoved
             if head[1] == 0:
                 toMove = "east"
             elif head[1] == data['height'] - 1:
