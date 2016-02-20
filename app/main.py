@@ -48,7 +48,7 @@ def getGrid(data):
 
 def getGridOfPossibleMovesByOtherSnakes(data):
     grid = getEmptyGrid()
-    for snake in data['snakes']
+    for snake in data['snakes']:
         if snake['id'] != id:
             for coord in snake['coords']:
                 grid[coord[0]][coord[1]] = 1
