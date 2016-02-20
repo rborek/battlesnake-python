@@ -31,7 +31,7 @@ def start():
         'taunt': 'battlesnake-python!'
     }
 
-def getEmptyGrid():
+def getEmptyGrid(data):
     return [[0 for row in range(data['width'])] for col in range(data['height'])];
 
 def getMe(data):
@@ -40,14 +40,14 @@ def getMe(data):
             return snake
 
 def getGrid(data):
-    grid = getEmptyGrid()
+    grid = getEmptyGrid(data)
     for snake in data['snakes']:
         for coord in snake['coords']:
             grid[coord[0]][coord[1]] = 1
     return grid
 
 def getGridOfPossibleMovesByOtherSnakes(data):
-    grid = getEmptyGrid()
+    grid = getEmptyGrid(data)
     for snake in data['snakes']:
         if snake['id'] != id:
             for coord in snake['coords']:
