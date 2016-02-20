@@ -37,7 +37,16 @@ def move():
     data = bottle.request.json
     grid = [[0 for i in xrange(data['width'])] for i in xrange(data['height'])]
 
+    for snake in data['snakes']:
+        # if it is us
+        if snake['id'] == id:
+            for coord in snake['coords']:
+                print coord[0] + " " + coord[1]
+                sys.stdout.flush()
+
+
     # TODO: Do things with data
+
 
     return {
         'move': 'north',
