@@ -73,7 +73,7 @@ def move():
             head = snake['coords'][0]
             justMoved = str(snake['message'])
             print str(data['width'])
-            print snake['message']
+            print snake["message"]
             if head[1] == 0:
                 toMove = "east"
             elif head[1] == data['height'] - 1:
