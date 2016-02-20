@@ -71,6 +71,8 @@ def move():
     for snake in data['snakes']:
         # if it is us
         if snake['id'] == id:
+            print str(data['width'])
+            print justMoved
             head = snake['coords'][0]
             justMoved = snake['message']
             if head[1] == 0:
@@ -99,7 +101,6 @@ def move():
                     elif justMoved == "Moved south":
                         toMove = "west"
                 elif head[1] == 0: # top right corner
-                    print justMoved
                     if justMoved == "Moved north":
                         toMove = "west"
                     elif justMoved == "Moved east":
