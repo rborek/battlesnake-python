@@ -67,7 +67,6 @@ def move():
     grid = getGrid(data) 
     toMove = 'north'
     head = [0, 0]
-    justMoved = ""; 
     for snake in data['snakes']:
         # if it is us
         if snake['id'] == id:
