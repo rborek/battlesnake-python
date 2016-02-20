@@ -71,8 +71,8 @@ def move():
         # if it is us
         if snake['id'] == id:
             head = snake['coords'][0]
-            justMovedX = snake['coords'][1][0]-snake['coords'][0][0]
-            justMovedY = snake['coords'][1][1]-snake['coords'][0][1]
+            justMovedX = snake['coords'][0][0]-snake['coords'][1][0]
+            justMovedY = snake['coords'][0][1]-snake['coords'][1][1]
             if justMovedX ==0:
                 if(justMovedY>0):
                     justMoved = "Moved south"
