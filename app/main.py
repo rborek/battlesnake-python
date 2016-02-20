@@ -111,6 +111,7 @@ def move():
                         toMove = "west"
                 elif head[1] == 0: # top right corner
                     print "reached top right"
+                    print justMoved
                     if justMoved == "Moved north":
                         toMove = "west"
                     elif justMoved == "Moved east":
