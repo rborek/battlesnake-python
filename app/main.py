@@ -83,7 +83,7 @@ def move():
                 elif head[1] == 0: # top left corner
                     if justMoved == "Moved north":
                         toMove = "east"
-                    elif justMoved == "Moved west"
+                    elif justMoved == "Moved west":
                         toMove = "south"
                 else:
                     toMove= "north"
