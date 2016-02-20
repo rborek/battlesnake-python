@@ -1,6 +1,7 @@
 import bottle
 import os
 
+id = "c6c28e7d-0f7e-473c-a2bc-8ee6dfc4a1a2";
 
 @bottle.route('/static/<path:path>')
 def static(path):
@@ -15,7 +16,7 @@ def index():
     )
 
     return {
-        'color': '#00ff00',
+        'color': '#44D55C',
         'head': head_url
     }
 
@@ -34,6 +35,7 @@ def start():
 @bottle.post('/move')
 def move():
     data = bottle.request.json
+    grid = [[0 for i in xrange(data['width'])] for i in xrange(data['height'])]
 
     # TODO: Do things with data
 
