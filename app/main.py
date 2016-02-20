@@ -42,7 +42,6 @@ def move():
         if snake['id'] == id:
             for coord in snake['coords']:
                 print str(coord[0]) + " " + str(coord[1])
-                sys.stdout.flush()
 
 
     # TODO: Do things with data
