@@ -71,7 +71,7 @@ def move():
         # if it is us
         if snake['id'] == id:
             head = snake['coords'][0]
-            justMoved = snake['message']
+            justMoved = str(snake['message'])
             print str(data['width'])
             print justMoved
             if head[1] == 0:
