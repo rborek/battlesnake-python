@@ -71,9 +71,12 @@ def move():
         # if it is us
         if snake['id'] == id:
             head = snake['coords'][0]
-            justMovedX = snake['coords'][1][0]-snake['coords'][0][0]
-            justMovedY = snake['coords'][1][1]-snake['coords'][0][1]
+
             possibleMove = [];
+
+            justMovedX = snake['coords'][0][0]-snake['coords'][1][0]
+            justMovedY = snake['coords'][0][1]-snake['coords'][1][1]
+
             if justMovedX ==0:
                 if(justMovedY>0):
                     justMoved = "Moved south"
@@ -134,12 +137,15 @@ def move():
                     toMove= "north"
             #if the xcoord is to the right
             elif head[0] == data['width'] - 1:
+                print "reached right side" 
                 if head[1] == data['height']-1: #bottom right corner
                     if justMoved == "Moved east":
                         toMove = "north"
                     elif justMoved == "Moved south":
                         toMove = "west"
                 elif head[1] == 0: # top right corner
+                    print "reached top right"
+                    print justMoved
                     if justMoved == "Moved north":
                         toMove = "west"
                     elif justMoved == "Moved east":
