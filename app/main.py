@@ -73,20 +73,51 @@ def move():
             head = snake['coords'][0]
             justMovedX = snake['coords'][1][0]-snake['coords'][0][0]
             justMovedY = snake['coords'][1][1]-snake['coords'][0][1]
+            possibleMove = [];
             if justMovedX ==0:
                 if(justMovedY>0):
                     justMoved = "Moved south"
+                    possibleMove.append([snake['coords'][0][0]+1,snake['coords'][0][1]])
+                    possibleMove.append([snake['coords'][0][0]-1,snake['coords'][0][1]])
+                    possibleMove.append([snake['coords'][0][0],snake['coords'][0][1]+1])
                 else:
                     justMoved = "Moved north"
+                    possibleMove.append([snake['coords'][0][0]+1,snake['coords'][0][1]])
+                    possibleMove.append([snake['coords'][0][0]-1,snake['coords'][0][1]])
+                    possibleMove.append([snake['coords'][0][0],snake['coords'][0][1]-1])
             else: 
                 if(justMovedX>0):
                     justMoved ="Moved east"
+                    possibleMove.append([snake['coords'][0][0]+1,snake['coords'][0][1]])
+                    possibleMove.append([snake['coords'][0][0],snake['coords'][0][1]+1])
+                    possibleMove.append([snake['coords'][0][0],snake['coords'][0][1]-1])
                 else:
                     justMoved = "Moved west"
+                    possibleMove.append([snake['coords'][0][0]-1,snake['coords'][0][1]])
+                    possibleMove.append([snake['coords'][0][0],snake['coords'][0][1]+1])
+                    possibleMove.append([snake['coords'][0][0],snake['coords'][0][1]-1])
+            for move in possibleMove:
+                if grid[move[0],move[1]] ==0:
+                    willMove =move;
+                    break
+
+            #turn willMove into the actual direction that the snake will move
+            if(willMove[0]-head[0]==0):
+                if(willMove[1]-head[1]==1):
+                    toMove = "south"
+                else
+                    toMove = "north"
+            elif willMove[0]-head[0]==1:
+                toMove = "east"
+            elif willMove[0]-head[0]==-1:
+                toMove = "west"
+
+            ### check if hit border-strongest argument        
             if head[1] == 0:
                 toMove = "east"
             elif head[1] == data['height'] - 1:
                 toMove = "west"
+            
             # if the xcoord is 0, or to the left
             if head[0] == 0 :
                 if head[1]== data['height']-1: #bottom left corner
