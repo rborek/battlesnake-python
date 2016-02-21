@@ -105,16 +105,6 @@ def getSafeDir(data):
                 return move
     return "north"
 
-@bottle.post('/move')
-def move():
-    data = bottle.request.json
-    toMove = 'north'
-    head = [0, 0]
-    for snake in data['snakes']:
-        # if it is us!
-        if snake['id'] == id:
-            head = snake['coords'][0]
-
 def returnPossibleMoves(data):
     grid = getGrid(data) 
     snake = getMe(data)
