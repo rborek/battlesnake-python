@@ -143,7 +143,7 @@ def move():
             if(willMove[0]-head[0]==0):
                 if(willMove[1]-head[1]==1):
                     toMove = "south"
-                else
+                else:
                     toMove = "north"
             elif willMove[0]-head[0]==1:
                 toMove = "east"
