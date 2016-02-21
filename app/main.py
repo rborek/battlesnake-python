@@ -116,49 +116,61 @@ def move():
         if snake['id'] == id:
             head = snake['coords'][0]
 
-            possibleMove = [];
+def returnPossibleMoves(data):
+    head = snake['coords'][0]
+    possibleMove = [];
+    justMovedX = snake['coords'][0][0]-snake['coords'][1][0]
+    justMovedY = snake['coords'][0][1]-snake['coords'][1][1]
+    if justMovedX ==0:
+        if(justMovedY>0):
+            justMoved = "Moved south"
+            possibleMove.append([snake['coords'][0][0]+1,snake['coords'][0][1]])
+            possibleMove.append([snake['coords'][0][0]-1,snake['coords'][0][1]])
+            possibleMove.append([snake['coords'][0][0],snake['coords'][0][1]+1])
+        else:
+            justMoved = "Moved north"
+            possibleMove.append([snake['coords'][0][0]+1,snake['coords'][0][1]])
+            possibleMove.append([snake['coords'][0][0]-1,snake['coords'][0][1]])
+            possibleMove.append([snake['coords'][0][0],snake['coords'][0][1]-1])
+    else: 
+        if(justMovedX>0):
+            justMoved ="Moved east"
+            possibleMove.append([snake['coords'][0][0]+1,snake['coords'][0][1]])
+            possibleMove.append([snake['coords'][0][0],snake['coords'][0][1]+1])
+            possibleMove.append([snake['coords'][0][0],snake['coords'][0][1]-1])
+        else:
+            justMoved = "Moved west"
+            possibleMove.append([snake['coords'][0][0]-1,snake['coords'][0][1]])
+            possibleMove.append([snake['coords'][0][0],snake['coords'][0][1]+1])
+            possibleMove.append([snake['coords'][0][0],snake['coords'][0][1]-1])
+    moves = []
+    for move in possibleMove:
+        if grid[move[0]][move[1]] ==0:
+            moves.append(move)
+    listToMove = []
+    #turn willMove into the actual direction that the snake will move
+    for willMove in move:
+        if(willMove[0]-head[0]==0):
+            if(willMove[1]-head[1]==1):
+                listToMove.append("south")
+            else:
+                listToMove.append("north")
+        elif willMove[0]-head[0]==1:
+            listToMove.append("east")
+        elif willMove[0]-head[0]==-1:
+            listToMove.append("west")
+    return listToMove
 
-            justMovedX = snake['coords'][0][0]-snake['coords'][1][0]
-            justMovedY = snake['coords'][0][1]-snake['coords'][1][1]
-
-            if justMovedX ==0:
-                if(justMovedY>0):
-                    justMoved = "Moved south"
-                    possibleMove.append([snake['coords'][0][0]+1,snake['coords'][0][1]])
-                    possibleMove.append([snake['coords'][0][0]-1,snake['coords'][0][1]])
-                    possibleMove.append([snake['coords'][0][0],snake['coords'][0][1]+1])
-                else:
-                    justMoved = "Moved north"
-                    possibleMove.append([snake['coords'][0][0]+1,snake['coords'][0][1]])
-                    possibleMove.append([snake['coords'][0][0]-1,snake['coords'][0][1]])
-                    possibleMove.append([snake['coords'][0][0],snake['coords'][0][1]-1])
-            else: 
-                if(justMovedX>0):
-                    justMoved ="Moved east"
-                    possibleMove.append([snake['coords'][0][0]+1,snake['coords'][0][1]])
-                    possibleMove.append([snake['coords'][0][0],snake['coords'][0][1]+1])
-                    possibleMove.append([snake['coords'][0][0],snake['coords'][0][1]-1])
-                else:
-                    justMoved = "Moved west"
-                    possibleMove.append([snake['coords'][0][0]-1,snake['coords'][0][1]])
-                    possibleMove.append([snake['coords'][0][0],snake['coords'][0][1]+1])
-                    possibleMove.append([snake['coords'][0][0],snake['coords'][0][1]-1])
-            for move in possibleMove:
-                if grid[move[0]][move[1]] ==0:
-                    willMove =move;
-                    break
-
-            #turn willMove into the actual direction that the snake will move
-            if(willMove[0]-head[0]==0):
-                if(willMove[1]-head[1]==1):
-                    toMove = "south"
-                else:
-                    toMove = "north"
-            elif willMove[0]-head[0]==1:
-                toMove = "east"
-            elif willMove[0]-head[0]==-1:
-                toMove = "west"
-
+@bottle.post('/move')
+def move():
+    data = bottle.request.json
+    grid = getGrid(data) 
+    toMove = 'north'
+    head = [0, 0]
+    for snake in data['snakes']:
+        # if it is us
+        if snake['id'] == id:
+            toMove = getSafeDir(data)
             ### check if hit border-strongest argument        
 
             if head[1] == 0:
