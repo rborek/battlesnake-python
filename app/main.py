@@ -52,7 +52,7 @@ def getGridOfPossibleMovesByOtherSnakes(data):
         if snake['id'] != id:
             justMovedX = snake['coords'][0][0]-snake['coords'][1][0]
             justMovedY = snake['coords'][0][1]-snake['coords'][1][1]
-            head = ['coords'][0]
+            head = snake['coords'][0]
             if justMovedX ==0:
                 if(justMovedY>0):
                     justMoved = "south"
@@ -60,7 +60,7 @@ def getGridOfPossibleMovesByOtherSnakes(data):
                     justMoved = "north"
             else: 
                 if(justMovedX>0):
-                    justMoved ="ed east"
+                    justMoved ="east"
                 else:
                     justMoved = "west"
             if justMoved != "south":
@@ -147,7 +147,6 @@ def move():
                 else:
                     toMove = "south"
             #if the ycoord is on the bottom
-
 
 
     # TODO: Do things with data
