@@ -96,22 +96,11 @@ def getSafeMovesBasedOnOtherSnakes(data):
             safeMoves.append("north")
     return safeMoves
 
-@bottle.post('/move')
-def move():
-    data = bottle.request.json
-    grid = getGrid(data) 
-    toMove = 'north'
-    head = [0, 0]
-    for snake in data['snakes']:
-        # if it is us
-        if snake['id'] == id:
-            head = snake['coords'][0]
-
+def returnPossibleMoves(data):
+    head = snake['coords'][0]
             possibleMove = [];
-
             justMovedX = snake['coords'][0][0]-snake['coords'][1][0]
             justMovedY = snake['coords'][0][1]-snake['coords'][1][1]
-
             if justMovedX ==0:
                 if(justMovedY>0):
                     justMoved = "Moved south"
@@ -134,21 +123,34 @@ def move():
                     possibleMove.append([snake['coords'][0][0]-1,snake['coords'][0][1]])
                     possibleMove.append([snake['coords'][0][0],snake['coords'][0][1]+1])
                     possibleMove.append([snake['coords'][0][0],snake['coords'][0][1]-1])
+            moves = []
             for move in possibleMove:
                 if grid[move[0]][move[1]] ==0:
-                    willMove =move;
-                    break
-
+                    moves.append(move)
+            listToMove = []
             #turn willMove into the actual direction that the snake will move
-            if(willMove[0]-head[0]==0):
-                if(willMove[1]-head[1]==1):
-                    toMove = "south"
-                else:
-                    toMove = "north"
-            elif willMove[0]-head[0]==1:
-                toMove = "east"
-            elif willMove[0]-head[0]==-1:
-                toMove = "west"
+            for willMove in move:
+                if(willMove[0]-head[0]==0):
+                    if(willMove[1]-head[1]==1):
+                        listToMove.append("south")
+                    else:
+                        listToMove.append("north")
+                elif willMove[0]-head[0]==1:
+                    listToMove.append("east")
+                elif willMove[0]-head[0]==-1:
+                    listToMove.append("west")
+    return listToMove
+
+@bottle.post('/move')
+def move():
+    data = bottle.request.json
+    grid = getGrid(data) 
+    toMove = 'north'
+    head = [0, 0]
+    for snake in data['snakes']:
+        # if it is us
+        if snake['id'] == id:
+            
 
             ### check if hit border-strongest argument        
 
