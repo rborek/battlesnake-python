@@ -150,7 +150,7 @@ def returnPossibleMoves(data):
             moves.append(move)
     listToMove = []
     #turn willMove into the actual direction that the snake will move
-    for willMove in move:
+    for willMove in moves:
         if(willMove[0]-head[0]==0):
             if(willMove[1]-head[1]==1):
                 listToMove.append("south")
