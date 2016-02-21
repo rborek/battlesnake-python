@@ -96,6 +96,15 @@ def getSafeMovesBasedOnOtherSnakes(data):
             safeMoves.append("north")
     return safeMoves
 
+def getSafeDir(data):
+    safeMovesFuture = getSafeMovesBasedOnOtherSnakes(data)
+    safeMovesCurrent = returnPossibleMoves(data)
+    for move in safeMovesFuture:
+        for move2 in safeMovesCurrent:
+            if move == move2:
+                return move
+    return "north"
+
 @bottle.post('/move')
 def move():
     data = bottle.request.json
