@@ -136,7 +136,7 @@ def returnPossibleMoves(data):
             possibleMove.append([snake['coords'][0][0],snake['coords'][0][1]-1])
     moves = []
     for move in possibleMove:
-        if(move[0]>=0 or move[0]<=16) and (move[1]>=0 or move[1]<=16):
+        if(move[0]>=0 and move[0]<=16) and (move[1]>=0 and move[1]<=16):
             if grid[move[0]][move[1]] ==0:
                moves.append(move)
     listToMove = []
