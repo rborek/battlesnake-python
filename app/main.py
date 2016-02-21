@@ -135,7 +135,7 @@ def move():
                     possibleMove.append([snake['coords'][0][0],snake['coords'][0][1]+1])
                     possibleMove.append([snake['coords'][0][0],snake['coords'][0][1]-1])
             for move in possibleMove:
-                if grid[move[0],move[1]] ==0:
+                if grid[move[0]][move[1]] ==0:
                     willMove =move;
                     break
 
