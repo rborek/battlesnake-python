@@ -117,9 +117,9 @@ def move():
             head = snake['coords'][0]
 
 def returnPossibleMoves(data):
-    snake = getMe(data):
+    snake = getMe(data)
     head = snake['coords'][0]
-    possibleMove = [];
+    possibleMove = []
     justMovedX = snake['coords'][0][0]-snake['coords'][1][0]
     justMovedY = snake['coords'][0][1]-snake['coords'][1][1]
     if justMovedX ==0:
