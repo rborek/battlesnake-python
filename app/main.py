@@ -111,6 +111,7 @@ def move():
                 else:
                     justMoved = "Moved west"
             toMove = getSafeMovesBasedOnOtherSnakes(data)[0]
+            print "they won't move to the " + toMove + " of me"
             if head[1] == 0:
                 toMove = "east"
             elif head[1] == data['height'] - 1:
