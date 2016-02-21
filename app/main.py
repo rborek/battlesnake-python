@@ -158,10 +158,10 @@ def move():
     data = bottle.request.json
     grid = getGrid(data) 
     toMove = 'north'
-    head = [0, 0]
     for snake in data['snakes']:
         # if it is us
         if snake['id'] == id:
+            head = snake['coords'][0]
             toMove = getSafeDir(data)
             ### check if hit border-strongest argument    
             justMovedX = snake['coords'][0][0]-snake['coords'][1][0]
