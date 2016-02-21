@@ -50,8 +50,27 @@ def getGridOfPossibleMovesByOtherSnakes(data):
     grid = getEmptyGrid(data)
     for snake in data['snakes']:
         if snake['id'] != id:
-            for coord in snake['coords']:
-                grid[coord[0]][coord[1]] = 1
+            justMovedX = snake['coords'][0][0]-snake['coords'][1][0]
+            justMovedY = snake['coords'][0][1]-snake['coords'][1][1]
+            head = ['coords'][0]
+            if justMovedX ==0:
+                if(justMovedY>0):
+                    justMoved = "south"
+                else:
+                    justMoved = "north"
+            else: 
+                if(justMovedX>0):
+                    justMoved ="ed east"
+                else:
+                    justMoved = "west"
+            if justMoved != "south":
+               grid[head[0]][head[1] + 1] = 1 
+            if justMoved != "north":
+               grid[head[0]][head[1] - 1] = 1 
+            if justMoved != "east":
+               grid[head[0] - 1][head[1]] = 1 
+            if justMoved != "west":
+               grid[head[0] + 1][head[1]] = 1 
     return grid
 
 def getSafeMovesBasedOnOtherSnakes(data):
@@ -59,6 +78,14 @@ def getSafeMovesBasedOnOtherSnakes(data):
     me = getMe(data)
     head = me['coords'][0]
     safeMoves = []
+    if grid[head[0] + 1][head[1]] == 0:
+        safeMoves.append("east")
+    if grid[head[0] - 1][head[1]] == 0:
+        safeMoves.append("west")
+    if grid[head[0]][head[1] + 1] == 0:
+        safeMoves.append("north")
+    if grid[head[0]][head[1] - 1] == 0:
+        safeMoves.append("south")
     return safeMoves
 
 @bottle.post('/move')
@@ -83,6 +110,7 @@ def move():
                     justMoved ="Moved east"
                 else:
                     justMoved = "Moved west"
+            toMove = getSafeMovesBasedOnOtherSnakes(data)[0]
             if head[1] == 0:
                 toMove = "east"
             elif head[1] == data['height'] - 1:
