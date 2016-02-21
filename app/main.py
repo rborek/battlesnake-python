@@ -28,7 +28,7 @@ def start():
     # TODO: Do things with data
 
     return {
-        'taunt': 'battlesnake-python!'
+        'taunt': 'travelling around is fun!'
     }
 
 def getEmptyGrid(data):
@@ -220,7 +220,7 @@ def move():
     print "head at " + str(head[0]) + ", " + str(head[1]) + "moving " + toMove
     return {
         'move': toMove,
-        'taunt': 'battlesnake-python!'
+        'taunt': 'meet me around the corner'
     }
 
 
